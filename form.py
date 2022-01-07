@@ -111,7 +111,5 @@ def show():
     st.write(st.session_state.answers)
 
 
-
-
 if __name__ == '__main__':
     show()
