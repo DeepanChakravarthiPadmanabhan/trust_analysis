@@ -13,7 +13,7 @@ def show():
     def get_questions():
         question_seed = random.randint(0, 100)
         random.seed(question_seed)
-        with open('dext/trust_analyzer/questions.pkl', 'rb') as f:
+        with open('questions.pkl', 'rb') as f:
             all_questions = pickle.load(f)
         questions = random.sample(all_questions, 3)
         return questions
