@@ -4,14 +4,23 @@ import pickle
 import random
 import json
 from PIL import Image
+from streamlit.report_thread import get_report_ctx
+from streamlit.server.server import Server
 
 
 def show():
     st.set_page_config(page_title='User trust study', layout='wide')
 
+    def _get_session():
+        session_id = get_report_ctx().session_id
+        session_info = Server.get_current()._get_session_info(session_id)
+        if session_info is None:
+            raise RuntimeError("Couldn't get your Streamlit Session object.")
+        return session_info.session, session_id
+
     @st.cache
-    def get_questions():
-        question_seed = random.randint(0, 100)
+    def get_questions(session_id):
+        question_seed = session_id
         random.seed(question_seed)
         with open('questions.pkl', 'rb') as f:
             all_questions = pickle.load(f)
@@ -87,7 +96,8 @@ def show():
         st.button('Next question', on_click=store_and_go,
                   args=(result, question["unique_id"]))
 
-    questions = get_questions()
+    user_session, session_id = _get_session()
+    questions = get_questions(session_id)
     st.session_state.get(questions)
 
     if "questions" not in st.session_state:
