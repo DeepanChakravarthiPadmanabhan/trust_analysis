@@ -222,7 +222,7 @@ interpretation_methods = ['IntegratedGradients', 'GuidedBackpropagation',
                           'SmoothGrad_IntegratedGradients',
                           'SmoothGrad_GuidedBackpropagation']
 model_names = ['EFFICIENTDETD0', 'SSD512', 'FasterRCNN']
-results_folder = 'trust_analysis_more'
+results_folder = 'trust_analysis'
 responses_model = ["Robot A explanation is \"much better\"",
                    "Robot A explanation is \"slightly better\"",
                    "Both explanations are \"same\"",
