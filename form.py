@@ -29,7 +29,7 @@ def show():
         random.seed(question_seed)
         with open('questions.pkl', 'rb') as f:
             all_questions = pickle.load(f)
-        questions = random.sample(all_questions, 3)
+        questions = random.sample(all_questions, 10)
         return questions
 
     def go_to_next_question():
