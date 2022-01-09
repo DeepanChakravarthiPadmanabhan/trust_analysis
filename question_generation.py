@@ -91,7 +91,7 @@ def get_box_question(detection_label):
     return box_question
 
 
-def generate_model_questions(num_question=30):
+def generate_model_questions(num_question=50):
     # Fix model explanation questions
     num_models = num_question
 
