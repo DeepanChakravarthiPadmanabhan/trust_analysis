@@ -326,5 +326,3 @@ all_questions = model_questions + mov_questions
 print('Total questions: ', len(all_questions))
 with open('questions.pkl', 'wb') as f:
     pickle.dump(all_questions, f)
-
-# A single detection in the image is represented by a bounding box providing the location and text near the box representing the category of the image identified by the artificial intelligence agent.
