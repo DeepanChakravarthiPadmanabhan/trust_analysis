@@ -163,7 +163,6 @@ def show():
 
         if question['type'] == "three" or question['type'] == 'four':
             images = question["images"]
-            st.write('three')
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       'The images below include detections (rectangular' \
                       ' box) predicted by an artificial intelligence agent ' \
