@@ -23,8 +23,6 @@ docs/theme/img/*
 
 install.sh
 
-*images/
-dext.egg-info/
 __pycache__
 *.idea/
 *play*
