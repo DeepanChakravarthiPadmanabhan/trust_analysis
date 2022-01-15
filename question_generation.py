@@ -219,7 +219,6 @@ def generate_model_questions(num_question=50):
 
 
 def get_class_mov_questions():
-    # A single detection in the image is represented by a bounding box providing the location and text near the box representing the category of the image identified by the artificial intelligence agent.
     class_question = ('Below given 4 images provide the detections and the '
                     'image regions more important to categorize the'
                     ' corresponding objects in 4 different ways. Which image '

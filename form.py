@@ -48,19 +48,26 @@ def show():
     def store_and_go(result, qno):
         st.session_state.answers[qno] = result
         answer = {qno: result}
-        result = st.session_state.firebase_table.post(
-            '/dexttrustanalysis-default-rtdb/single_answer:', answer)
+        # result = st.session_state.firebase_table.post(
+        #     '/dexttrustanalysis-default-rtdb/single_answer:', answer)
         go_to_next_question()
 
     def store_final_user_stats(answers):
-        result = st.session_state.firebase_table.post(
-            '/dexttrustanalysis-default-rtdb/all_answer:', answers)
+        # result = st.session_state.firebase_table.post(
+        #     '/dexttrustanalysis-default-rtdb/all_answer:', answers)
         pass
 
     def display_question(questions, qno):
         question = questions[qno]
-        st.write("Question ID: ", question["unique_id"])
+        # st.write("Question ID: ", question["unique_id"])
+
+        caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question %s </div><br>'
+        st.markdown(caption % str(st.session_state.curr_question_idx + 1), unsafe_allow_html=True)
+
         if question["type"] == "one":
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+                      '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
+            st.markdown(caption, unsafe_allow_html=True)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       'An object detected by an artificial intelligence system is shown below. ' \
                       'Robot A and Robot B are two robots trying to explain the detection result. ' \
@@ -74,7 +81,7 @@ def show():
                 st.image(det_image)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif">' \
                       'The explanations for the detected object is provided by ' \
-                      '<b>highlighting the pixels important </b>for the decision making process. ' \
+                      '<b>highlighting the pixels important </b>for the decision-making process. ' \
                       'The colorbar on the right of the image indicates the pixel importance scale. </div>'
             st.markdown(caption, unsafe_allow_html=True)
             st.header("Classification decision explanation")
@@ -95,6 +102,9 @@ def show():
 
         if question["type"] == "two":
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+                      '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
+            st.markdown(caption, unsafe_allow_html=True)
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       'An object detected by an artificial intelligence system is shown below. ' \
                       'Robot A and Robot B are two robots trying to explain the detection result. ' \
                       '<b>Which Robot\'s explanation is reasonable to the detected object?</div>'
@@ -107,7 +117,7 @@ def show():
                 st.image(det_image)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif">' \
                       'The explanations for the detected object is provided by ' \
-                      '<b>highlighting the pixels important </b>for the decision making process. ' \
+                      '<b>highlighting the pixels important </b>for the decision-making process. ' \
                       'The colorbar on the right of the image indicates the pixel importance scale. ' \
                       'Each image explain a particular bounding box coordinate decision.</div>'
             st.markdown(caption, unsafe_allow_html=True)
@@ -162,17 +172,20 @@ def show():
                       args=(result, question["unique_id"]))
 
         if question['type'] == "three" or question['type'] == 'four':
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+                      '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK II description</a> </div><br>'
+            st.markdown(caption, unsafe_allow_html=True)
             images = question["images"]
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
-                      'The images below include detections (rectangular' \
-                      ' box) predicted by an artificial intelligence agent ' \
-                      'and important pixels (marked by ellipses, dots or ' \
-                      'irregular polygons) responsible for the corresponding' \
-                      ' detection result in the same color as the detection ' \
-                      'rectangular box. Each detection is represented by ' \
-                      'a rectangular bounding boxes indicating the location ' \
-                      'and text near the box indicating the category of' \
-                      ' the object enclosed within the box. </div>'
+                      'The images below include all detections (rectangular' \
+                      ' box) predicted by an artificial intelligence agent' \
+                      ' in a single image and a visual representation of ' \
+                      'the explanations corresponding to the detection ' \
+                      'in the same color. The explanations are the important' \
+                      ' pixels responsible for the decision-making process. ' \
+                      'In each image below the explanations are represented ' \
+                      'using either dotted pixels, pixels inside elliptical ' \
+                      'region or pixels inside an irregular polygon. </div>'
             st.markdown(caption, unsafe_allow_html=True)
             result = st.radio(question["question"], question["options"])
 
@@ -233,8 +246,8 @@ def show():
         st.success('All questions answered. Thank you for your valuable time.')
         store_final_user_stats(st.session_state.answers)
 
-    # st.write('Answers: ')
-    # st.write(st.session_state.answers)
+    st.write('Answers: ')
+    st.write(st.session_state.answers)
 
 
 if __name__ == '__main__':
