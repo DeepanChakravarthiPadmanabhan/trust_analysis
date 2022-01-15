@@ -303,6 +303,56 @@ def generate_mov_questions(num_questions, question_num):
     return model_question_jsons
 
 
+def generate_general_questions(question_num):
+    model_question_jsons = []
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P1'
+    question['question'] = 'Please enter your age below.'
+    model_question_jsons.append(question)
+    question_num += 1
+
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P2'
+    question['question'] = 'Please enter your job title/occupation below.'
+    model_question_jsons.append(question)
+    question_num += 1
+
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P3'
+    question['question'] = 'Are you working in the field of Computer Science?'
+    question['options'] = ['Yes', 'No']
+    model_question_jsons.append(question)
+    question_num += 1
+
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P4'
+    question['question'] = 'Have you worked in eXplainable AI? If yes, please provide the keywords related to your work.'
+    model_question_jsons.append(question)
+    question_num += 1
+
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P5'
+    question['question'] = 'Was the task description provided understandable to you and sufficient to perform the task successfully?'
+    question['options'] = ['Yes', 'No']
+    model_question_jsons.append(question)
+    question_num += 1
+
+    question = dict()
+    question['unique_id'] = str(question_num)
+    question['type'] = 'P6'
+    question['question'] = 'Please provide your consent to use your answers for research purpose'
+    question['options'] = ['Yes', 'No']
+    model_question_jsons.append(question)
+    question_num += 1
+
+    return model_question_jsons
+
+
 interpretation_methods = ['IntegratedGradients', 'GuidedBackpropagation',
                           'SmoothGrad_IntegratedGradients',
                           'SmoothGrad_GuidedBackpropagation']
@@ -321,7 +371,10 @@ print('Total model questions: ', len(model_questions))
 mov_folder = 'mov'
 mov_questions = generate_mov_questions(27, len(model_questions) + 1)
 print('Total mov questions: ', len(mov_questions))
-all_questions = model_questions + mov_questions
+general_questions = generate_general_questions((len(mov_questions) +
+                                                len(model_questions) + 1))
+all_questions = model_questions + mov_questions + general_questions
 print('Total questions: ', len(all_questions))
+print('All questions: ', all_questions)
 with open('questions.pkl', 'wb') as f:
     pickle.dump(all_questions, f)
