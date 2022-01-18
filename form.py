@@ -105,7 +105,7 @@ def show():
             with col2:
                 caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
-                image_two = Image.open(images[1])
+                image_two = Image.open(images[2])
                 st.image(image_two)
             result = st.radio(question["question"], question["options"])
             st.button('Next question', on_click=store_and_go,
@@ -132,52 +132,18 @@ def show():
                       'The colorbar on the right of the image indicates the pixel importance scale. ' \
                       'Each image explain a particular bounding box coordinate decision.</div>'
             st.markdown(caption, unsafe_allow_html=True)
-            st.header('Robot A bounding box decision explanation')
-            col1, col2, col3, col4 = st.columns(4)
+            st.header('Bounding box decision explanation')
+            col1, col2 = st.columns(2)
             with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> x_left_top explanation </div>'
+                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot A explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_one = Image.open(images[1])
                 st.image(image_one)
             with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> y_left_top explanation </div>'
+                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_two = Image.open(images[2])
                 st.image(image_two)
-            with col3:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> x_right_bottom explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_three = Image.open(images[3])
-                st.image(image_three)
-            with col4:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif">  y_right_bottom explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_four = Image.open(images[4])
-                st.image(image_four)
-
-            st.header('Robot B bounding box decision explanation')
-            col1, col2, col3, col4 = st.columns(4)
-            with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> x_left_top explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_five = Image.open(images[5])
-                st.image(image_five)
-            with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> y_left_top explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_six = Image.open(images[6])
-                st.image(image_six)
-            with col3:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> x_right_bottom explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_seven = Image.open(images[7])
-                st.image(image_seven)
-            with col4:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif">  y_right_bottom explanation </div>'
-                st.markdown(caption, unsafe_allow_html=True)
-                image_eight = Image.open(images[8])
-                st.image(image_eight)
-
             result = st.radio(question["question"], question["options"])
             st.button('Next question', on_click=store_and_go,
                       args=(result, question["unique_id"]))

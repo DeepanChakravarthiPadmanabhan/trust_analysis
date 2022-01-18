@@ -83,11 +83,12 @@ def get_classification_question(detection_label):
     return class_question
 
 
-def get_box_question(detection_label):
-    box_question = ('Robot A and Robot B are explaining bounding box decision'
-                    ' of the %s detection shown in the image. According to '
-                    'you, Which robot\'s explanation is better understandable '
-                    'to explain the decision?' % detection_label)
+def get_box_question(detection_label, label):
+    box_question = ('Robot A and Robot B are explaining %s bounding box '
+                    'decision of the %s detection shown in the image.'
+                    ' According to you, Which robot\'s explanation is better'
+                    ' understandable to explain the decision?'
+                    % (label, detection_label))
     return box_question
 
 
@@ -201,17 +202,23 @@ def generate_model_questions(num_question=50):
         question_num += 1
         question['unique_id'] = str(question_num)
         question['type'] = 'two'
+
+        a_images = [xmin_image_path_1, ymin_image_path_1, xmax_image_path_1,
+                    ymax_image_path_1]
+        b_images = [xmin_image_path_2, ymin_image_path_2, xmax_image_path_2,
+                    ymax_image_path_2]
+        coordinate_choice = random.randint(0, 3)
+        label = ['x_left_top', 'y_left_top', 'x_right_bottom',
+                 'y_right_bottom']
+        a_choice = a_images[coordinate_choice]
+        b_choice = b_images[coordinate_choice]
+        a_caption = 'Robot A ' + label[coordinate_choice]
+        b_caption = 'Robot B ' + label[coordinate_choice]
+
         question['question'] = get_box_question(
-            selected_detection_labels[n])
-        question['images'] = [det_image_path, xmin_image_path_1,
-                              ymin_image_path_1, xmax_image_path_1,
-                              ymax_image_path_1, xmin_image_path_2,
-                              ymin_image_path_2, xmax_image_path_2,
-                              ymax_image_path_2]
-        question['image_captions'] = [
-            'Detection', 'Robot A xmin', 'Robot A ymin', 'Robot A xmax',
-            'Robot A ymax', 'Robot B xmin', 'Robot B ymin', 'Robot B xmax',
-            'Robot B ymax']
+            selected_detection_labels[n], label[coordinate_choice])
+        question['images'] = [det_image_path, a_choice, b_choice]
+        question['image_captions'] = ['Detection', a_caption, b_caption]
         question['options'] = responses_model
         model_question_jsons.append(question)
 
@@ -220,9 +227,9 @@ def generate_model_questions(num_question=50):
 
 def get_class_mov_questions():
     class_question = ('Below given 4 images provide the detections and the '
-                    'image regions more important to categorize the'
-                    ' corresponding objects in 4 different ways. Which image '
-                    'is better understandable for you?')
+                      'image regions more important to categorize the'
+                      ' corresponding objects in 4 different ways. Which '
+                      'image is better understandable for you?')
     return class_question
 
 
@@ -345,7 +352,7 @@ def generate_general_questions(question_num):
     question = dict()
     question['unique_id'] = str(question_num)
     question['type'] = 'P6'
-    question['question'] = 'Please provide your consent to use your answers for research purpose'
+    question['question'] = 'Please provide your consent to use your answers for research purpose.'
     question['options'] = ['Yes', 'No']
     model_question_jsons.append(question)
     question_num += 1
