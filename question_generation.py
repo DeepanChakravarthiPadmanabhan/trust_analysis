@@ -224,7 +224,7 @@ def generate_model_questions(num_question=50):
 
     return model_question_jsons
 
-# The below images represent in 4 different ways the important pixels responsible for a particular classification decision along with the corresponding detection in the same color. Which representation is better to understand the important region corresponding to the detection?
+
 def get_class_mov_questions():
     class_question = ('The below images represent in 4 different ways the '
                       'important pixels responsible for the '
