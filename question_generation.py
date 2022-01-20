@@ -224,20 +224,24 @@ def generate_model_questions(num_question=50):
 
     return model_question_jsons
 
-
+# The below images represent in 4 different ways the important pixels responsible for a particular classification decision along with the corresponding detection in the same color. Which representation is better to understand the important region corresponding to the detection?
 def get_class_mov_questions():
-    class_question = ('Below given 4 images provide the detections and the '
-                      'image regions more important to categorize the'
-                      ' corresponding objects in 4 different ways. Which '
-                      'image is better understandable for you?')
+    class_question = ('The below images represent in 4 different ways the '
+                      'important pixels responsible for the '
+                      'classification decision along with the corresponding '
+                      'detection in the same color. Which representation is '
+                      'better to understand the important region '
+                      'corresponding to the detection?')
     return class_question
 
 
 def get_box_mov_questions(q_type):
-    box_question = ('Below given 4 images provide the detections and the '
-                    'image regions more important to predict the %s of the'
-                    ' corresponding objects in 4 different ways. Which image '
-                    'is better understandable for you?' % q_type)
+    box_question = ('The below images represent in 4 different ways the '
+                    'important pixels responsible for the %s decision along'
+                    ' with the corresponding detection in the same color.'
+                    ' Which representation is better to understand the '
+                    'important region corresponding to the detection?'
+                    % q_type)
     return box_question
 
 
