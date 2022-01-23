@@ -72,10 +72,11 @@ def show():
     def display_question(questions, qno):
         question = questions[qno]
         # st.write("Question ID: ", question["unique_id"])
-        caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question %s </div><br>'
-        st.markdown(caption % str(st.session_state.curr_question_idx + 1), unsafe_allow_html=True)
 
         if question["type"] == "one":
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            st.markdown(caption % str(st.session_state.curr_question_idx + 1),
+                        unsafe_allow_html=True)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
@@ -112,6 +113,9 @@ def show():
                       args=(result, question["unique_id"]))
 
         if question["type"] == "two":
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            st.markdown(caption % str(st.session_state.curr_question_idx + 1),
+                        unsafe_allow_html=True)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
@@ -149,17 +153,23 @@ def show():
                       args=(result, question["unique_id"]))
 
         if question['type'] == "three" or question['type'] == 'four':
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            st.markdown(caption % str(st.session_state.curr_question_idx + 1),
+                        unsafe_allow_html=True)
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK II description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
             images = question["images"]
             caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       'The images below include all detections (rectangular' \
-                      ' box) predicted by an artificial intelligence agent' \
+                      ' box) predicted by an object detector' \
                       ' in a single image and a visual representation of ' \
                       'the explanations corresponding to the detection ' \
                       'in the same color. The explanations are the important' \
                       ' pixels responsible for the decision-making process. ' \
+                      ' </div>'
+            st.markdown(caption, unsafe_allow_html=True)
+            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
                       'In each image below the explanations are represented ' \
                       'using either dotted pixels, pixels inside elliptical ' \
                       'region or pixels inside an irregular polygon. </div>'
@@ -213,8 +223,8 @@ def show():
                     store_personal(results, 'personal')
             st.button('Finish', on_click=go_to_next_question_personal)
 
-    num_model_questions = 10
-    num_mov_questions = 5
+    num_model_questions = 7
+    num_mov_questions = 3
     num_personal_questions = 6
     num_questions_to_show = (num_model_questions + num_mov_questions +
                              num_personal_questions)
