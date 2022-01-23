@@ -74,13 +74,13 @@ def show():
         # st.write("Question ID: ", question["unique_id"])
 
         if question["type"] == "one":
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
             st.markdown(caption % str(st.session_state.curr_question_idx + 1),
                         unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       'An object detected by an artificial intelligence system is shown below. ' \
                       'Robot A and Robot B are two robots trying to explain the detection result. ' \
                       '<b>Which Robot\'s explanation is reasonable to the detected object?</div>'
@@ -91,7 +91,7 @@ def show():
             col1, col2, col3 = st.columns([2.5, 5, 2.5])
             with col2:
                 st.image(det_image)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif">' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif">' \
                       'The explanations for the detected object is provided by ' \
                       '<b>highlighting the pixels important </b>for the decision-making process. ' \
                       'The colorbar on the right of the image indicates the pixel importance scale. </div>'
@@ -99,12 +99,12 @@ def show():
             st.header("Classification decision explanation")
             col1, col2 = st.columns(2)
             with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot A explanation </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Robot A explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_one = Image.open(images[1])
                 st.image(image_one)
             with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_two = Image.open(images[2])
                 st.image(image_two)
@@ -113,13 +113,13 @@ def show():
                       args=(result, question["unique_id"]))
 
         if question["type"] == "two":
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
             st.markdown(caption % str(st.session_state.curr_question_idx + 1),
                         unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK I description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       'An object detected by an artificial intelligence system is shown below. ' \
                       'Robot A and Robot B are two robots trying to explain the detection result. ' \
                       '<b>Which Robot\'s explanation is reasonable to the detected object?</div>'
@@ -130,7 +130,7 @@ def show():
             col1, col2, col3 = st.columns([2.5, 5, 2.5])
             with col2:
                 st.image(det_image)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif">' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif">' \
                       'The explanations for the detected object is provided by ' \
                       '<b>highlighting the pixels important </b>for the decision-making process. ' \
                       'The colorbar on the right of the image indicates the pixel importance scale. ' \
@@ -139,12 +139,12 @@ def show():
             st.header('Bounding box decision explanation')
             col1, col2 = st.columns(2)
             with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot A explanation </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Robot A explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_one = Image.open(images[1])
                 st.image(image_one)
             with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Robot B explanation </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_two = Image.open(images[2])
                 st.image(image_two)
@@ -153,14 +153,14 @@ def show():
                       args=(result, question["unique_id"]))
 
         if question['type'] == "three" or question['type'] == 'four':
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> Question: %s/10 </div><br>'
             st.markdown(caption % str(st.session_state.curr_question_idx + 1),
                         unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       '<a href="https://github.com/DeepanChakravarthiPadmanabhan/trust_analysis/blob/main/TaskDescription.pdf" target="_blank"> View detailed TASK II description</a> </div><br>'
             st.markdown(caption, unsafe_allow_html=True)
             images = question["images"]
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       'The images below include all detections (rectangular' \
                       ' box) predicted by an object detector' \
                       ' in a single image and a visual representation of ' \
@@ -169,7 +169,7 @@ def show():
                       ' pixels responsible for the decision-making process. ' \
                       ' </div>'
             st.markdown(caption, unsafe_allow_html=True)
-            caption = '<div style="text-align: left; color: Black; font-size: 20pxx; font-family:sans-serif"> ' \
+            caption = '<div style="text-align: left; color: Gray; font-size: 20pxx; font-family:sans-serif"> ' \
                       'In each image below the explanations are represented ' \
                       'using either dotted pixels, pixels inside elliptical ' \
                       'region or pixels inside an irregular polygon. </div>'
@@ -178,24 +178,24 @@ def show():
 
             col1, col2 = st.columns(2)
             with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Method 1 </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Method 1 </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_five = Image.open(images[0])
                 st.image(image_five)
             with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Method 2 </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Method 2 </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_six = Image.open(images[1])
                 st.image(image_six)
 
             col1, col2 = st.columns(2)
             with col1:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Method 3 </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Method 3 </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_five = Image.open(images[2])
                 st.image(image_five)
             with col2:
-                caption = '<div style="text-align: center; color: Black; font-size: 20pxx; font-family:sans-serif"> Method 4 </div>'
+                caption = '<div style="text-align: center; color: Gray; font-size: 20pxx; font-family:sans-serif"> Method 4 </div>'
                 st.markdown(caption, unsafe_allow_html=True)
                 image_six = Image.open(images[3])
                 st.image(image_six)
